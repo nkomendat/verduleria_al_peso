@@ -7,7 +7,6 @@ const CartWidget = () => {
     <div className="nav-item">
       <IoCartOutline className="nav-icon" />
       <span className="nav-label">Carrito</span>
-      <span className="cart-fixed">0</span>
     </div>
   );
 };

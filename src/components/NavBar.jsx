@@ -44,7 +44,10 @@ const NavBar = () => {
         <NavLink
           to="/carrito"
           className={`nav-item ${activeTab === "carrito" ? "active" : ""}`}>
-          <IoCartOutline className="icon" />
+          <div className="cart-icon-container">
+            <IoCartOutline className="icon" />
+            <span className="cart-badge">0</span>
+          </div>
           <p>Carrito</p>
         </NavLink>
       </div>

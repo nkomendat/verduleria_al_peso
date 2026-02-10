@@ -2,43 +2,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #f4f4f4;
-}
-
-.nav-links {
-  margin: 0 auto;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links li {
-  cursor: pointer;
-}
-
-.cart {
-  font-size: 1.3rem;
-}
-
 .item-count-container {
   margin-top: 1rem;
   text-align: center;
@@ -111,8 +74,6 @@ nav {
   color: orange;
 }
 
-/* NavBar.css */
-
 .navbar-custom {
   display: flex;
   justify-content: space-around;
@@ -136,17 +97,9 @@ nav {
   margin-bottom: 5px;
 }
 
-.nav-item.active {
-  background-color: white;
-  color: #a8d5a3;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
 .nav-item.active .icon {
   color: #a8d5a3;
 }
-
 
 .nav-item.active {
   background-color: white;
@@ -167,7 +120,6 @@ nav {
   margin-top: 4px;
 }
 
-/* Estilo base del navbar */
 .navbar-custom {
   background-color: #aad7a6;
   display: flex;
@@ -177,7 +129,6 @@ nav {
   font-family: sans-serif;
 }
 
-/* Parte superior: Nosotros - Productos - Carrito */
 .navbar-top {
   display: flex;
   justify-content: space-around;
@@ -186,7 +137,6 @@ nav {
   background-color: #aad7a6;
 }
 
-/* Botones (ícono + texto) */
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -201,19 +151,16 @@ nav {
   cursor: pointer;
 }
 
-/* Íconos */
 .icon {
   font-size: 24px;
 }
 
-/* Texto debajo del ícono */
 .nav-item p {
   margin: 5px 0 0;
   font-size: 14px;
   font-weight: bold;
 }
 
-/* Activo (sección blanca que sobresale) */
 .nav-item.active,
 .nav-item:has(.categoria-link.active) {
   background-color: white;
@@ -222,13 +169,11 @@ nav {
   border-top-right-radius: 10px;
 }
 
-/* Activo también aplica color a hijos */
 .nav-item.active .icon,
 .nav-item.active p {
   color: #aad7a6;
 }
 
-/* Categorías debajo del navbar */
 .navbar-categorias {
   display: flex;
   justify-content: center;
@@ -239,7 +184,6 @@ nav {
   flex-wrap: wrap;
 }
 
-/* Enlaces a categorías */
 .categoria-link {
   text-decoration: none;
   font-weight: 500;
@@ -269,3 +213,19 @@ nav {
   max-height: 100px;
 }
 
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}

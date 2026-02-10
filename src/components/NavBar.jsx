@@ -24,7 +24,7 @@ const NavBar = () => {
   const activeTab = getActiveTab();
 
   return (
-    <nav className="navbar-custom">
+    <nav className="navbar-custom navbar-fixed">
       <div className="navbar-top">
         <div className="logo-container">
           <img src="https://i.postimg.cc/Wb5rqrs5/Logo.png" alt="Logo Verdulería" className="logo" />

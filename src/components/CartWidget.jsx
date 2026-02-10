@@ -1,7 +1,13 @@
+import React from 'react';
+import { IoCartOutline } from "react-icons/io5";
+import '../App.css';
+
 const CartWidget = () => {
   return (
-    <div>
-      🛒 <span>0</span>
+    <div className="nav-item">
+      <IoCartOutline className="nav-icon" />
+      <span className="nav-label">Carrito</span>
+      <span className="cart-fixed">0</span>
     </div>
   );
 };

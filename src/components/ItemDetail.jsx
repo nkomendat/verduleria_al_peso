@@ -1,13 +1,33 @@
+import React from 'react';
+import { Card } from 'react-bootstrap';
+import ItemCount from './ItemCount';
+import { GoArrowLeft } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
+
 const ItemDetail = ({ detalle }) => {
+  const navigate = useNavigate();
+  if (!detalle || !detalle.name) {
+    return <p style={{ textAlign: 'center' }}>Cargando producto...</p>;
+  }
   return (
     <div>
-      <h2>{detalle.name}</h2>
-      <img src={detalle.img} alt={detalle.name} width={200} />
-      <p>{detalle.description}</p>
-      <p>Precio: ${detalle.price}</p>
-      <p>Stock: {detalle.stock}</p>
+        <Card className="item-detail-card">
+        <GoArrowLeft className="go-back-icon" onClick={() => navigate(-1)} />
+        <Card.Img variant="top" src={detalle.img} />
+        <Card.Body>
+            <Card.Title className="fw-bold text-center">{detalle.name}</Card.Title>
+            <Card.Text className="fw-bold text-center item-price">
+            ${detalle.price} x {detalle.unit}
+            </Card.Text>
+            <ItemCount
+            stock={detalle.stock || 10}
+            initial={1}
+            onAdd={(cant) => console.log(`Agregado: ${cant}`)}
+            />
+        </Card.Body>
+        </Card>
     </div>
-  )
-}
+  );
+};
 
-export default ItemDetail
+export default ItemDetail;

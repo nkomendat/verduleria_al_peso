@@ -38,3 +38,234 @@ nav {
 .cart {
   font-size: 1.3rem;
 }
+
+.item-count-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.item-count-buttons {
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.item-count-button {
+  width: 90px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-count-button-left {
+  border-radius: 0 0 0 16px;
+}
+
+.item-count-button-right {
+  border-radius: 0 0 16px 0;
+}
+
+.item-count-quantity {
+  width: 90px;
+  background-color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-detail-card {
+  width: 22rem;
+  margin: 1rem auto;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.go-back-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.go-back-icon:hover {
+  transform: scale(1.1);
+  color: #000;
+}
+
+.item-price {
+  color: orange;
+}
+
+/* NavBar.css */
+
+.navbar-custom {
+  display: flex;
+  justify-content: space-around;
+  background-color: #a8d5a3;
+  padding: 10px 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.nav-item .icon {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.nav-item.active {
+  background-color: white;
+  color: #a8d5a3;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.nav-item.active .icon {
+  color: #a8d5a3;
+}
+
+
+.nav-item.active {
+  background-color: white;
+  color: #6fff00;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.nav-item.active .icon,
+.nav-item.active p {
+  color: #6fff00;
+}
+
+.cart-fixed {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  margin-top: 4px;
+}
+
+/* Estilo base del navbar */
+.navbar-custom {
+  background-color: #aad7a6;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Parte superior: Nosotros - Productos - Carrito */
+.navbar-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  background-color: #aad7a6;
+}
+
+/* Botones (ícono + texto) */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  flex: 1;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Íconos */
+.icon {
+  font-size: 24px;
+}
+
+/* Texto debajo del ícono */
+.nav-item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Activo (sección blanca que sobresale) */
+.nav-item.active,
+.nav-item:has(.categoria-link.active) {
+  background-color: white;
+  color: #aad7a6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Activo también aplica color a hijos */
+.nav-item.active .icon,
+.nav-item.active p {
+  color: #aad7a6;
+}
+
+/* Categorías debajo del navbar */
+.navbar-categorias {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: white;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+  flex-wrap: wrap;
+}
+
+/* Enlaces a categorías */
+.categoria-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  color: #e95e2e;
+  border-bottom: 2px solid transparent;
+  padding: 0.3rem 0.6rem;
+  transition: all 0.2s ease;
+}
+
+.categoria-link:hover {
+  border-color: #e95e2e;
+}
+
+.categoria-link.active {
+  font-weight: bold;
+  border-color: #aad7a6;
+  color: #aad7a6;
+}
+
+.item-list-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.logo {
+  max-height: 100px;
+}
+

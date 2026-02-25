@@ -6,7 +6,8 @@ const productos = [
     stock: 100,
     price: 1700,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/zXMHTbwL/Acelga.jpg'
+    img: 'https://i.postimg.cc/zXMHTbwL/Acelga.jpg',
+    tipo: 'unidad'
   },
   {
     id: '02',
@@ -15,7 +16,8 @@ const productos = [
     stock: 50,
     price: 1700,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/yxxWZskh/Albahaca.jpg'
+    img: 'https://i.postimg.cc/yxxWZskh/Albahaca.jpg',
+    tipo: 'unidad'
   },
   {
     id: '03',
@@ -24,7 +26,8 @@ const productos = [
     stock: 50,
     price: 2500,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/YqVLQGN0/Apio.jpg'
+    img: 'https://i.postimg.cc/YqVLQGN0/Apio.jpg',
+    tipo: 'peso'
   },
   {
     id: '04',
@@ -33,7 +36,8 @@ const productos = [
     stock: 20,
     price: 4500,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/4NMHp7vY/Brocoli.jpg'
+    img: 'https://i.postimg.cc/4NMHp7vY/Brocoli.jpg',
+    tipo: 'peso'
   },
   {
     id: '05',
@@ -42,7 +46,8 @@ const productos = [
     stock: 100,
     price: 3500,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/SN5Yc2LY/Espinaca.jpg'
+    img: 'https://i.postimg.cc/SN5Yc2LY/Espinaca.jpg',
+    tipo: 'unidad'
   },
   {
     id: '06',
@@ -51,7 +56,8 @@ const productos = [
     stock: 40,
     price: 3900,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/rwr0jVgw/lechuga_criolla.jpg'
+    img: 'https://i.postimg.cc/rwr0jVgw/lechuga_criolla.jpg',
+    tipo: 'peso'
   },
   {
     id: '07',
@@ -60,7 +66,8 @@ const productos = [
     stock: 30,
     price: 3000,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/t4xZkqDT/Lechuga.jpg'
+    img: 'https://i.postimg.cc/t4xZkqDT/Lechuga.jpg',
+    tipo: 'peso'
   },
   {
     id: '08',
@@ -69,7 +76,8 @@ const productos = [
     stock: 100,
     price: 1100,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/cLnghxTJ/Perejil.jpg'
+    img: 'https://i.postimg.cc/cLnghxTJ/Perejil.jpg',
+    tipo: 'unidad'
   },
   {
     id: '09',
@@ -78,7 +86,8 @@ const productos = [
     stock: 100,
     price: 2000,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/YCWGRr8j/Puerro.jpg'
+    img: 'https://i.postimg.cc/YCWGRr8j/Puerro.jpg',
+    tipo: 'unidad'
   },
   {
     id: '10',
@@ -87,7 +96,8 @@ const productos = [
     stock: 50,
     price: 2300,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/FHLdprGY/Repollo.jpg'
+    img: 'https://i.postimg.cc/FHLdprGY/Repollo.jpg',
+    tipo: 'peso'
   },
   {
     id: '11',
@@ -96,7 +106,8 @@ const productos = [
     stock: 100,
     price: 850,
     category: 'Verduras de Hoja',
-    img: 'https://i.postimg.cc/Gmy8KLzB/Rucula.jpg'
+    img: 'https://i.postimg.cc/Gmy8KLzB/Rucula.jpg',
+    tipo: 'unidad'
   },
   {
     id: '12',
@@ -105,7 +116,8 @@ const productos = [
     stock: 70,
     price: 4200,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/q7G7DzKg/Batata.jpg'
+    img: 'https://i.postimg.cc/q7G7DzKg/Batata.jpg',
+    tipo: 'peso'
   },
   {
     id: '13',
@@ -114,7 +126,8 @@ const productos = [
     stock: 100,
     price: 1500,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/W474YhZJ/Cebolla_Verdeo.jpg'
+    img: 'https://i.postimg.cc/W474YhZJ/Cebolla_Verdeo.jpg',
+    tipo: 'unidad'
   },
   {
     id: '14',
@@ -123,7 +136,8 @@ const productos = [
     stock: 40,
     price: 1500,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/R0T0pNtK/Cebolla_Roja.jpg'
+    img: 'https://i.postimg.cc/R0T0pNtK/Cebolla_Roja.jpg',
+    tipo: 'peso'
   },
   {
     id: '15',
@@ -132,7 +146,8 @@ const productos = [
     stock: 80,
     price: 900,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/fbvbqJdX/Cebolla.jpg'
+    img: 'https://i.postimg.cc/fbvbqJdX/Cebolla.jpg',
+    tipo: 'peso'
   },
   {
     id: '16',
@@ -141,7 +156,8 @@ const productos = [
     stock: 50,
     price: 1200,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/TPcPNpbq/Choclo_amarillo.jpg'
+    img: 'https://i.postimg.cc/TPcPNpbq/Choclo_amarillo.jpg',
+    tipo: 'peso'
   },
   {
     id: '17',
@@ -150,7 +166,8 @@ const productos = [
     stock: 20,
     price: 9000,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/xCT1wnGH/Jengibre.jpg'
+    img: 'https://i.postimg.cc/xCT1wnGH/Jengibre.jpg',
+    tipo: 'peso'
   },
   {
     id: '18',
@@ -159,7 +176,8 @@ const productos = [
     stock: 10,
     price: 7600,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/R0T0pNtd/Morron_Rojo.jpg'
+    img: 'https://i.postimg.cc/R0T0pNtd/Morron_Rojo.jpg',
+    tipo: 'peso'
   },
   {
     id: '19',
@@ -168,7 +186,8 @@ const productos = [
     stock: 40,
     price: 2000,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/tTC4KpdV/Morron_Verde.jpg'
+    img: 'https://i.postimg.cc/tTC4KpdV/Morron_Verde.jpg',
+    tipo: 'peso'
   },
   {
     id: '20',
@@ -177,7 +196,8 @@ const productos = [
     stock: 100,
     price: 1700,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/bJNw7p09/Papa_Blanca.jpg'
+    img: 'https://i.postimg.cc/bJNw7p09/Papa_Blanca.jpg',
+    tipo: 'peso'
   },
   {
     id: '21',
@@ -186,7 +206,8 @@ const productos = [
     stock: 100,
     price: 1400,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/RFVZk41T/Papa_Negra.jpg'
+    img: 'https://i.postimg.cc/RFVZk41T/Papa_Negra.jpg',
+    tipo: 'peso'
   },
   {
     id: '22',
@@ -195,7 +216,8 @@ const productos = [
     stock: 20,
     price: 1500,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/sXDgksPm/Pepino.jpg'
+    img: 'https://i.postimg.cc/sXDgksPm/Pepino.jpg',
+    tipo: 'peso'
   },
   {
     id: '23',
@@ -204,7 +226,8 @@ const productos = [
     stock: 20,
     price: 2000,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/9MFQ6CP1/Remolacha.jpg'
+    img: 'https://i.postimg.cc/9MFQ6CP1/Remolacha.jpg',
+    tipo: 'peso'
   },
   {
     id: '24',
@@ -213,7 +236,8 @@ const productos = [
     stock: 20,
     price: 5000,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/NMfj3B8d/Tomate_Cherry.jpg'
+    img: 'https://i.postimg.cc/NMfj3B8d/Tomate_Cherry.jpg',
+    tipo: 'peso'
   },
   {
     id: '25',
@@ -222,7 +246,8 @@ const productos = [
     stock: 40,
     price: 2500,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/Pxr5gTbV/tomate_perita.jpg'
+    img: 'https://i.postimg.cc/Pxr5gTbV/tomate_perita.jpg',
+    tipo: 'peso'
   },
   {
     id: '26',
@@ -231,7 +256,8 @@ const productos = [
     stock: 50,
     price: 1500,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/bJNw7p05/Tomate_Redondo.jpg'
+    img: 'https://i.postimg.cc/bJNw7p05/Tomate_Redondo.jpg',
+    tipo: 'peso'
   },
   {
     id: '27',
@@ -240,7 +266,8 @@ const productos = [
     stock: 80,
     price: 1300,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/NMfj3B8S/Zanahoria.jpg'
+    img: 'https://i.postimg.cc/NMfj3B8S/Zanahoria.jpg',
+    tipo: 'peso'
   },
   {
     id: '28',
@@ -249,7 +276,8 @@ const productos = [
     stock: 50,
     price: 1300,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/TwY3zfq8/Zapallo_Anco.jpg'
+    img: 'https://i.postimg.cc/TwY3zfq8/Zapallo_Anco.jpg',
+    tipo: 'peso'
   },
   {
     id: '29',
@@ -258,7 +286,8 @@ const productos = [
     stock: 20,
     price: 1200,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/Jn4zfMcV/Zapallo_Japones.jpg'
+    img: 'https://i.postimg.cc/Jn4zfMcV/Zapallo_Japones.jpg',
+    tipo: 'peso'
   },
   {
     id: '30',
@@ -267,7 +296,8 @@ const productos = [
     stock: 30,
     price: 1200,
     category: 'Hortalizas',
-    img: 'https://i.postimg.cc/V6Lkxm93/zapallito_redondo.jpg'
+    img: 'https://i.postimg.cc/V6Lkxm93/zapallito_redondo.jpg',
+    tipo: 'peso'
   },
   {
     id: '31',
@@ -276,7 +306,8 @@ const productos = [
     stock: 20,
     price: 2300,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/R0vSt4YW/Banana.jpg'
+    img: 'https://i.postimg.cc/R0vSt4YW/Banana.jpg',
+    tipo: 'peso'
   },
   {
     id: '32',
@@ -285,7 +316,8 @@ const productos = [
     stock: 15,
     price: 3000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/YStrFMPG/Ciruela.jpg'
+    img: 'https://i.postimg.cc/YStrFMPG/Ciruela.jpg',
+    tipo: 'peso'
   },
   {
     id: '33',
@@ -294,7 +326,8 @@ const productos = [
     stock: 25,
     price: 4000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/zfqzh8Qv/Durazno_Amarillo.jpg'
+    img: 'https://i.postimg.cc/zfqzh8Qv/Durazno_Amarillo.jpg',
+    tipo: 'peso'
   },
   {
     id: '34',
@@ -303,7 +336,8 @@ const productos = [
     stock: 30,
     price: 5500,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/rpqV4MHK/Durazno_Rojo.jpg'
+    img: 'https://i.postimg.cc/rpqV4MHK/Durazno_Rojo.jpg',
+    tipo: 'peso'
   },
   {
     id: '35',
@@ -312,7 +346,8 @@ const productos = [
     stock: 40,
     price: 9000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/xd9fmnZz/Frutillas.jpg'
+    img: 'https://i.postimg.cc/xd9fmnZz/Frutillas.jpg',
+    tipo: 'peso'
   },
   {
     id: '36',
@@ -321,7 +356,8 @@ const productos = [
     stock: 20,
     price: 9000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/R0GMQ2rC/Kiwi.jpg'
+    img: 'https://i.postimg.cc/R0GMQ2rC/Kiwi.jpg',
+    tipo: 'peso'
   },
   {
     id: '37',
@@ -330,7 +366,8 @@ const productos = [
     stock: 25,
     price: 6500,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/nLTHYN8c/Mango.jpg'
+    img: 'https://i.postimg.cc/nLTHYN8c/Mango.jpg',
+    tipo: 'peso'
   },
   {
     id: '38',
@@ -339,7 +376,8 @@ const productos = [
     stock: 30,
     price: 5500,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/nLTHYN8s/Manzana.jpg'
+    img: 'https://i.postimg.cc/nLTHYN8s/Manzana.jpg',
+    tipo: 'peso'
   },
   {
     id: '39',
@@ -348,7 +386,8 @@ const productos = [
     stock: 30,
     price: 5500,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/6Qz9LFsQ/Manzana_Verde.jpg'
+    img: 'https://i.postimg.cc/6Qz9LFsQ/Manzana_Verde.jpg',
+    tipo: 'peso'
   },
   {
     id: '40',
@@ -357,7 +396,8 @@ const productos = [
     stock: 10,
     price: 8000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/YCGnxWJv/Palta.jpg'
+    img: 'https://i.postimg.cc/YCGnxWJv/Palta.jpg',
+    tipo: 'peso'
   },
   {
     id: '41',
@@ -366,7 +406,8 @@ const productos = [
     stock: 50,
     price: 5000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/TPQRqB8K/Pera.jpg'
+    img: 'https://i.postimg.cc/TPQRqB8K/Pera.jpg',
+    tipo: 'peso'
   },
   {
     id: '42',
@@ -375,7 +416,8 @@ const productos = [
     stock: 50,
     price: 3500,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/q7QkXWfC/Piña.jpg'
+    img: 'https://i.postimg.cc/q7QkXWfC/Piña.jpg',
+    tipo: 'peso'
   },
   {
     id: '43',
@@ -384,7 +426,8 @@ const productos = [
     stock: 15,
     price: 5000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/LsvHBGdg/Platano.jpg'
+    img: 'https://i.postimg.cc/LsvHBGdg/Platano.jpg',
+    tipo: 'peso'
   },
   {
     id: '44',
@@ -393,7 +436,8 @@ const productos = [
     stock: 100,
     price: 800,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/R0GMQ2rw/Sandia.jpg'
+    img: 'https://i.postimg.cc/R0GMQ2rw/Sandia.jpg',
+    tipo: 'peso'
   },
   {
     id: '45',
@@ -402,7 +446,8 @@ const productos = [
     stock: 100,
     price: 5000,
     category: 'Frutas',
-    img: 'https://i.postimg.cc/5tpxqDcw/Uva_Red_Globe.jpg'
+    img: 'https://i.postimg.cc/5tpxqDcw/Uva_Red_Globe.jpg',
+    tipo: 'peso'
   },
   {
     id: '46',
@@ -411,7 +456,8 @@ const productos = [
     stock: 30,
     price: 4000,
     category: 'Citricos',
-    img: 'https://i.postimg.cc/2yLrY61W/Lima.jpg'
+    img: 'https://i.postimg.cc/2yLrY61W/Lima.jpg',
+    tipo: 'peso'
   },
   {
     id: '47',
@@ -420,7 +466,8 @@ const productos = [
     stock: 40,
     price: 4000,
     category: 'Citricos',
-    img: 'https://i.postimg.cc/Kj3xbz1L/Limon.jpg'
+    img: 'https://i.postimg.cc/Kj3xbz1L/Limon.jpg',
+    tipo: 'peso'
   },
   {
     id: '48',
@@ -429,7 +476,8 @@ const productos = [
     stock: 100,
     price: 1500,
     category: 'Citricos',
-    img: 'https://i.postimg.cc/Y0LM79vQ/Naranja.jpg'
+    img: 'https://i.postimg.cc/Y0LM79vQ/Naranja.jpg',
+    tipo: 'peso'
   }
 ]
 

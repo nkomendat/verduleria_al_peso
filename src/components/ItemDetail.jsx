@@ -20,9 +20,10 @@ const ItemDetail = ({ detalle }) => {
             ${detalle.price} x {detalle.unit}
             </Card.Text>
             <ItemCount
-            stock={detalle.stock || 10}
-            initial={1}
-            onAdd={(cant) => console.log(`Agregado: ${cant}`)}
+              stock={detalle.stock || 10}
+              initial={detalle.tipo === "peso" ? 0.1 : 1}
+              tipo={detalle.tipo}
+              onAdd={(cant) => console.log(`Agregado: ${cant}`)}
             />
         </Card.Body>
         </Card>

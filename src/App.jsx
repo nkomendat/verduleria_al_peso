@@ -4,7 +4,9 @@ import NavBar from "./components/NavBar"
 import ItemListContainer from "./components/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
+import NotFound from "./components/NotFound";
 import Footer from './components/Footer';
+import Nosotros from "./components/Nosotros";
 
 function App() {
   return (
@@ -19,18 +21,17 @@ function App() {
           path="/categoria/:categoriaId"
           element={<ItemListContainer mensaje="Categoría" />}
         />
-        <Route path="/item/:Id" element={<ItemDetailContainer />} />
-        <Route
-          path="*"
-          element={
-            <div style={{ textAlign: "center", padding: "2rem" }}>
-              <img
-                src="https://i.postimg.cc/PJtyTjQ0/Pagina-Error.png"
-                alt="Página no encontrada"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </div>
-          }
+        <Route 
+          path="/item/:Id" 
+          element={<ItemDetailContainer />}
+        />
+        <Route 
+          path="*" 
+          element={<NotFound />} 
+        />
+        <Route 
+          path="/nosotros" 
+          element={<Nosotros />} 
         />
       </Routes>
       <Footer />

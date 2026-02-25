@@ -27,7 +27,13 @@ const NavBar = () => {
     <nav className="navbar-custom navbar-fixed">
       <div className="navbar-top">
         <div className="logo-container">
-          <img src="https://i.postimg.cc/Wb5rqrs5/Logo.png" alt="Logo Verdulería" className="logo" />
+          <NavLink to="/">
+            <img 
+              src="https://i.postimg.cc/Wb5rqrs5/Logo.png" 
+              alt="Logo Verdulería" 
+              className="logo" 
+            />
+          </NavLink>
         </div>
         <NavLink
           to="/nosotros"

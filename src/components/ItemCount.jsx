@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const ItemCount = ({ stock, initial = 0, tipo }) => {
+const ItemCount = ({ stock, initial = 0, tipo, onAdd }) => {
   const [cantidad, setCantidad] = useState(initial);
 
   const step = tipo === "peso" ? 0.1 : 1;
@@ -14,7 +14,7 @@ const ItemCount = ({ stock, initial = 0, tipo }) => {
   };
 
   const restar = () => {
-    if (cantidad - step >= 0) {
+    if (cantidad - step >= initial) {
       const nuevaCantidad = Math.round((cantidad - step) * 10) / 10;
       setCantidad(nuevaCantidad);
     }
@@ -35,6 +35,13 @@ const ItemCount = ({ stock, initial = 0, tipo }) => {
           +
         </button>
       </div>
+
+      <button
+        onClick={() => onAdd(cantidad)}
+        className="btn btn-dark mt-3"
+      >
+        Agregar al carrito
+      </button>
     </div>
   );
 };

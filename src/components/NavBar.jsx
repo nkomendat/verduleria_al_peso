@@ -1,13 +1,16 @@
+import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { GoHomeFill } from "react-icons/go";
 import { BsBoxSeam } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
+import { CartContext } from "../components/CartContext";
 import "../App.css";
 
 const categorias = ["Verduras de Hoja", "Hortalizas", "Frutas", "Citricos"];
 
 const NavBar = () => {
   const location = useLocation();
+  const { getTotalItems } = useContext(CartContext);
 
   const getActiveTab = () => {
     if (location.pathname === "/" || location.pathname.startsWith("/categoria")) {
@@ -28,35 +31,42 @@ const NavBar = () => {
       <div className="navbar-top">
         <div className="logo-container">
           <NavLink to="/">
-            <img 
-              src="https://i.postimg.cc/Wb5rqrs5/Logo.png" 
-              alt="Logo Verdulería" 
-              className="logo" 
+            <img
+              src="https://i.postimg.cc/Wb5rqrs5/Logo.png"
+              alt="Logo Verdulería"
+              className="logo"
             />
           </NavLink>
         </div>
+
         <NavLink
           to="/nosotros"
-          className={`nav-item ${activeTab === "nosotros" ? "active" : ""}`}>
+          className={`nav-item ${activeTab === "nosotros" ? "active" : ""}`}
+        >
           <GoHomeFill className="icon" />
           <p>Nosotros</p>
         </NavLink>
+
         <NavLink
           to="/"
-          className={`nav-item ${activeTab === "productos" ? "active" : ""}`}>
+          className={`nav-item ${activeTab === "productos" ? "active" : ""}`}
+        >
           <BsBoxSeam className="icon" />
           <p>Productos</p>
         </NavLink>
+
         <NavLink
           to="/carrito"
-          className={`nav-item ${activeTab === "carrito" ? "active" : ""}`}>
+          className={`nav-item ${activeTab === "carrito" ? "active" : ""}`}
+        >
           <div className="cart-icon-container">
             <IoCartOutline className="icon" />
-            <span className="cart-badge">0</span>
+            <span className="cart-badge">{getTotalItems()}</span>
           </div>
           <p>Carrito</p>
         </NavLink>
       </div>
+
       {activeTab === "productos" && (
         <div className="navbar-categorias">
           {categorias.map((cat) => (

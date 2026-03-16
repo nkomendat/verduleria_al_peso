@@ -258,3 +258,7 @@ body {
   transform: scale(1.2);
   color: #6fff00;
 }
+
+.cart-container {
+  padding-bottom: 120px;
+}

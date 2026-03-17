@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { db } from "../service/firebase";
-import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  runTransaction,
+  serverTimestamp,
+} from "firebase/firestore";
 import { Button, Form, Card, Spinner, Modal } from "react-bootstrap";
 
 const OrderLookup = () => {
@@ -70,40 +75,59 @@ const OrderLookup = () => {
     setSuccessMessage("");
 
     try {
-      // 1. Restaurar stock
-      for (const prod of order.items) {
-        const productRef = doc(db, "productos", prod.id);
-        const productSnap = await getDoc(productRef);
-
-        if (productSnap.exists()) {
-          const currentStock = productSnap.data().stock;
-          const newStock = currentStock + prod.quantity;
-
-          await updateDoc(productRef, {
-            stock: newStock,
-          });
-        }
-      }
-
-      // 2. Marcar la orden como cancelada
       const orderRef = doc(db, "orders", order.id);
 
-      await updateDoc(orderRef, {
-        status: "cancelada",
-        canceledAt: serverTimestamp(),
+      await runTransaction(db, async (transaction) => {
+        const orderSnap = await transaction.get(orderRef);
+
+        if (!orderSnap.exists()) {
+          throw new Error("La orden no existe.");
+        }
+
+        const currentOrder = orderSnap.data();
+
+        if (currentOrder.status === "cancelada") {
+          throw new Error("La orden ya fue cancelada.");
+        }
+
+        for (const prod of currentOrder.items) {
+          const productRef = doc(db, "productos", prod.id);
+          const productSnap = await transaction.get(productRef);
+
+          if (!productSnap.exists()) {
+            continue;
+          }
+
+          const currentStock = Number(productSnap.data().stock);
+          const restoredStock = currentStock + Number(prod.quantity);
+
+          transaction.update(productRef, {
+            stock: restoredStock,
+          });
+        }
+
+        transaction.update(orderRef, {
+          status: "cancelada",
+          canceledAt: serverTimestamp(),
+        });
       });
 
-      // 3. Refrescar orden en pantalla
-      setOrder({
-        ...order,
-        status: "cancelada",
-      });
+      const updatedOrderSnap = await getDoc(orderRef);
 
-      setSuccessMessage("La orden fue cancelada y el stock fue recompuesto correctamente.");
+      if (updatedOrderSnap.exists()) {
+        setOrder({
+          id: updatedOrderSnap.id,
+          ...updatedOrderSnap.data(),
+        });
+      }
+
+      setSuccessMessage(
+        "La orden fue cancelada y el stock fue recompuesto correctamente."
+      );
       setShowConfirm(false);
     } catch (err) {
       console.log(err);
-      setError("Hubo un error al cancelar la orden.");
+      setError(err.message || "Hubo un error al cancelar la orden.");
     } finally {
       setCancelLoading(false);
     }
@@ -142,7 +166,9 @@ const OrderLookup = () => {
       </Form>
 
       {error && <p className="text-danger text-center fw-bold">{error}</p>}
-      {successMessage && <p className="text-success text-center fw-bold">{successMessage}</p>}
+      {successMessage && (
+        <p className="text-success text-center fw-bold">{successMessage}</p>
+      )}
 
       {order && (
         <Card className="p-4 shadow-sm">
@@ -157,6 +183,13 @@ const OrderLookup = () => {
             <p>
               <strong>Fecha de compra:</strong>{" "}
               {order.date.toDate().toLocaleString()}
+            </p>
+          )}
+
+          {order.canceledAt?.toDate && (
+            <p>
+              <strong>Fecha de cancelación:</strong>{" "}
+              {order.canceledAt.toDate().toLocaleString()}
             </p>
           )}
 
@@ -205,7 +238,21 @@ const OrderLookup = () => {
                 onClick={() => setShowConfirm(true)}
                 disabled={cancelLoading}
               >
-                {cancelLoading ? "Procesando..." : "Boton de Arrepentimiento"}
+                {cancelLoading ? (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="me-2"
+                    />
+                    Cancelando...
+                  </>
+                ) : (
+                  "Boton de Arrepentimiento"
+                )}
               </Button>
             </div>
           )}
@@ -233,7 +280,7 @@ const OrderLookup = () => {
           </Button>
 
           <Button variant="danger" onClick={handleCancelOrder} disabled={cancelLoading}>
-            {cancelLoading ? "Cancelando..." : "Sí, cancelar compra"}
+            {cancelLoading ? "Procesando..." : "Sí, cancelar compra"}
           </Button>
         </Modal.Footer>
       </Modal>

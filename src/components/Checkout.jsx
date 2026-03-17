@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../components/CartContext";
 import { Button, Form, Card, Spinner } from "react-bootstrap";
 import { db } from "../service/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  runTransaction,
+  serverTimestamp,
+} from "firebase/firestore";
 
 const Checkout = () => {
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
@@ -102,37 +107,76 @@ const Checkout = () => {
       return;
     }
 
+    if (cart.length === 0) {
+      setError("No hay productos en el carrito.");
+      return;
+    }
+
     setError("");
     setLoading(true);
 
-    const orden = {
-      buyer: {
-        nombre: buyer.nombre.trim(),
-        telefono: buyer.telefono.trim(),
-        email: buyer.email.trim(),
-      },
-      items: cart.map((prod) => ({
-        id: prod.id,
-        name: prod.name,
-        price: prod.price,
-        quantity: prod.quantity,
-        tipo: prod.tipo,
-        img: prod.img,
-      })),
-      total: getTotalPrice(),
-      date: serverTimestamp(),
-      status: "activa",
-    };
-
     try {
-      const ordersRef = collection(db, "orders");
-      const docRef = await addDoc(ordersRef, orden);
+      const ordersCollectionRef = collection(db, "orders");
+      const newOrderRef = doc(ordersCollectionRef);
 
-      setOrderId(docRef.id);
+      await runTransaction(db, async (transaction) => {
+        const productosActualizados = [];
+
+        for (const prod of cart) {
+          const productRef = doc(db, "productos", prod.id);
+          const productSnap = await transaction.get(productRef);
+
+          if (!productSnap.exists()) {
+            throw new Error(`El producto "${prod.name}" no existe.`);
+          }
+
+          const data = productSnap.data();
+          const currentStock = Number(data.stock);
+          const requestedQuantity = Number(prod.quantity);
+
+          if (currentStock < requestedQuantity) {
+            throw new Error(`Stock insuficiente para "${prod.name}".`);
+          }
+
+          productosActualizados.push({
+            ref: productRef,
+            newStock: currentStock - requestedQuantity,
+          });
+        }
+
+        const orden = {
+          buyer: {
+            nombre: buyer.nombre.trim(),
+            telefono: buyer.telefono.trim(),
+            email: buyer.email.trim(),
+          },
+          items: cart.map((prod) => ({
+            id: prod.id,
+            name: prod.name,
+            price: prod.price,
+            quantity: prod.quantity,
+            tipo: prod.tipo,
+            img: prod.img,
+          })),
+          total: getTotalPrice(),
+          date: serverTimestamp(),
+          status: "activa",
+        };
+
+        transaction.set(newOrderRef, orden);
+
+        productosActualizados.forEach((prod) => {
+          transaction.update(prod.ref, {
+            stock: prod.newStock,
+          });
+        });
+      });
+
+      setOrderId(newOrderRef.id);
       clearCart();
     } catch (err) {
       console.log(err);
-      setError("Hubo un error al generar la orden. Inténtalo de nuevo.");
+      setError(err.message || "Hubo un error al generar la orden.");
     } finally {
       setLoading(false);
     }

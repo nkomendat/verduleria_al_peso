@@ -1,12 +1,15 @@
-import React from 'react';
+import { useContext } from "react";
 import { IoCartOutline } from "react-icons/io5";
-import '../App.css';
+import { CartContext } from "./CartContext";
+import "../App.css";
 
 const CartWidget = () => {
+  const { getTotalItems } = useContext(CartContext);
+
   return (
-    <div className="nav-item">
-      <IoCartOutline className="nav-icon" />
-      <span className="nav-label">Carrito</span>
+    <div className="cart-icon-container">
+      <IoCartOutline className="icon" />
+      <span className="cart-badge">{getTotalItems()}</span>
     </div>
   );
 };

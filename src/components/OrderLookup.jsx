@@ -90,6 +90,9 @@ const OrderLookup = () => {
           throw new Error("La orden ya fue cancelada.");
         }
 
+        // Primero leer todos los productos
+        const productosActualizados = [];
+
         for (const prod of currentOrder.items) {
           const productRef = doc(db, "productos", prod.id);
           const productSnap = await transaction.get(productRef);
@@ -101,10 +104,18 @@ const OrderLookup = () => {
           const currentStock = Number(productSnap.data().stock);
           const restoredStock = currentStock + Number(prod.quantity);
 
-          transaction.update(productRef, {
-            stock: restoredStock,
+          productosActualizados.push({
+            ref: productRef,
+            newStock: restoredStock,
           });
         }
+
+        // Después escribir todas las actualizaciones
+        productosActualizados.forEach((prod) => {
+          transaction.update(prod.ref, {
+            stock: prod.newStock,
+          });
+        });
 
         transaction.update(orderRef, {
           status: "cancelada",
@@ -122,7 +133,7 @@ const OrderLookup = () => {
       }
 
       setSuccessMessage(
-        "La orden fue cancelada y el stock fue recompuesto correctamente."
+        "La orden fue cancelada correctamente."
       );
       setShowConfirm(false);
     } catch (err) {

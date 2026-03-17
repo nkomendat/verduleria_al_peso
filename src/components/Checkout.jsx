@@ -6,8 +6,9 @@ import { db } from "../service/firebase";
 import {
   collection,
   doc,
-  runTransaction,
+  getDoc,
   serverTimestamp,
+  writeBatch,
 } from "firebase/firestore";
 
 const Checkout = () => {
@@ -116,63 +117,67 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      const ordersCollectionRef = collection(db, "orders");
-      const newOrderRef = doc(ordersCollectionRef);
+      const batch = writeBatch(db);
+      const orderRef = doc(collection(db, "orders"));
 
-      await runTransaction(db, async (transaction) => {
-        const productosActualizados = [];
+      const productosValidados = [];
 
-        for (const prod of cart) {
-          const productRef = doc(db, "productos", prod.id);
-          const productSnap = await transaction.get(productRef);
+      for (const prod of cart) {
+        const productRef = doc(db, "productos", prod.id);
+        const productSnap = await getDoc(productRef);
 
-          if (!productSnap.exists()) {
-            throw new Error(`El producto "${prod.name}" no existe.`);
-          }
-
-          const data = productSnap.data();
-          const currentStock = Number(data.stock);
-          const requestedQuantity = Number(prod.quantity);
-
-          if (currentStock < requestedQuantity) {
-            throw new Error(`Stock insuficiente para "${prod.name}".`);
-          }
-
-          productosActualizados.push({
-            ref: productRef,
-            newStock: currentStock - requestedQuantity,
-          });
+        if (!productSnap.exists()) {
+          throw new Error(`El producto "${prod.name}" no existe.`);
         }
 
-        const orden = {
-          buyer: {
-            nombre: buyer.nombre.trim(),
-            telefono: buyer.telefono.trim(),
-            email: buyer.email.trim(),
-          },
-          items: cart.map((prod) => ({
-            id: prod.id,
-            name: prod.name,
-            price: prod.price,
-            quantity: prod.quantity,
-            tipo: prod.tipo,
-            img: prod.img,
-          })),
-          total: getTotalPrice(),
-          date: serverTimestamp(),
-          status: "activa",
-        };
+        const productData = productSnap.data();
+        const currentStock = Number(productData.stock);
+        const requestedQuantity = Number(prod.quantity);
 
-        transaction.set(newOrderRef, orden);
+        if (Number.isNaN(currentStock)) {
+          throw new Error(`El stock de "${prod.name}" no es válido.`);
+        }
 
-        productosActualizados.forEach((prod) => {
-          transaction.update(prod.ref, {
-            stock: prod.newStock,
-          });
+        if (currentStock < requestedQuantity) {
+          throw new Error(`Stock insuficiente para "${prod.name}".`);
+        }
+
+        productosValidados.push({
+          ref: productRef,
+          newStock: currentStock - requestedQuantity,
+        });
+      }
+
+      const orden = {
+        buyer: {
+          nombre: buyer.nombre.trim(),
+          telefono: buyer.telefono.trim(),
+          email: buyer.email.trim(),
+        },
+        items: cart.map((prod) => ({
+          id: prod.id,
+          name: prod.name,
+          price: prod.price,
+          quantity: prod.quantity,
+          tipo: prod.tipo,
+          img: prod.img,
+        })),
+        total: getTotalPrice(),
+        date: serverTimestamp(),
+        status: "activa",
+      };
+
+      batch.set(orderRef, orden);
+
+      productosValidados.forEach((prod) => {
+        batch.update(prod.ref, {
+          stock: prod.newStock,
         });
       });
 
-      setOrderId(newOrderRef.id);
+      await batch.commit();
+
+      setOrderId(orderRef.id);
       clearCart();
     } catch (err) {
       console.log(err);

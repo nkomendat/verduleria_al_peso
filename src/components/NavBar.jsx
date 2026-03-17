@@ -4,6 +4,7 @@ import { GoHomeFill } from "react-icons/go";
 import { BsBoxSeam } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
 import { CartContext } from "../components/CartContext";
+import { FaListAlt } from "react-icons/fa";
 import "../App.css";
 
 const categorias = ["Verduras de Hoja", "Hortalizas", "Frutas", "Citricos"];
@@ -12,17 +13,19 @@ const NavBar = () => {
   const location = useLocation();
   const { getTotalItems } = useContext(CartContext);
 
-  const getActiveTab = () => {
-    if (location.pathname === "/" || location.pathname.startsWith("/categoria")) {
-      return "productos";
-    } else if (location.pathname === "/nosotros") {
-      return "nosotros";
-    } else if (location.pathname === "/carrito") {
-      return "carrito";
-    } else {
-      return "";
-    }
-  };
+const getActiveTab = () => {
+  if (location.pathname === "/" || location.pathname.startsWith("/categoria")) {
+    return "productos";
+  } else if (location.pathname === "/nosotros") {
+    return "nosotros";
+  } else if (location.pathname === "/carrito") {
+    return "carrito";
+  } else if (location.pathname === "/orden") {
+    return "orden";
+  } else {
+    return "";
+  }
+};
 
   const activeTab = getActiveTab();
 
@@ -53,6 +56,14 @@ const NavBar = () => {
         >
           <BsBoxSeam className="icon" />
           <p>Productos</p>
+        </NavLink>
+
+        <NavLink
+          to="/orden"
+          className={`nav-item ${activeTab === "orden" ? "active" : ""}`}
+        >
+          <FaListAlt className="icon" />
+          <p>Orden</p>
         </NavLink>
 
         <NavLink

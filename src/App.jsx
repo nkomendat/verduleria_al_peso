@@ -8,6 +8,8 @@ import Nosotros from './components/Nosotros';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+import OrderLookup from "./components/OrderLookup";
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
         <Route path="/item/:Id" element={<ItemDetailContainer />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/carrito" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/orden" element={<OrderLookup />} />
       </Routes>
       <Footer />
     </BrowserRouter>

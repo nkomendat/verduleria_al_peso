@@ -10,10 +10,6 @@ const ItemDetail = ({ detalle }) => {
   const { addItem } = useContext(CartContext);
   const [agregado, setAgregado] = useState(false);
 
-  if (!detalle || !detalle.name) {
-    return <p style={{ textAlign: 'center' }}>Cargando producto...</p>;
-  }
-
   const onAdd = (cantidad) => {
     if (cantidad > 0) {
       addItem(detalle, cantidad);

@@ -67,13 +67,13 @@ const Cart = () => {
         <h4>Total: ${getTotalPrice().toFixed(2)}</h4>
 
         <div className="d-flex justify-content-end gap-2 mt-3">
-          <Button variant="outline-danger" onClick={clearCart}>
+            <Button variant="outline-danger" onClick={clearCart}>
             Vaciar carrito
-          </Button>
+            </Button>
 
-          <Button variant="dark" disabled>
+            <Link to="/checkout" className="btn btn-dark">
             Finalizar compra
-          </Button>
+            </Link>
         </div>
       </div>
     </div>
